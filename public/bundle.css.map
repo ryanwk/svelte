@@ -5,8 +5,8 @@
     "../App.svelte"
   ],
   "sourcesContent": [
-    "<script>\n\texport let name;\n</script>\n\n<style>\n\th1 {\n\t\tcolor: purple;\n\t}\n</style>\n\n<h1>Hello {name}!</h1>\n"
+    "<script>\n  export let name;\n  let age = 28;\n\n  function incrementAge() {\n    age += 1;\n  }\n</script>\n\n<style>\n  h1 {\n    color: purple;\n  }\n</style>\n\n<h1>Hello {name}, my age is {age}!</h1>\n<button on:click={incrementAge}>Change Age</button>\n"
   ],
   "names": [],
-  "mappings": "AAKC,EAAE,cAAC,CAAC,AACH,KAAK,CAAE,MAAM,AACd,CAAC"
+  "mappings": "AAUE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC"
 }
