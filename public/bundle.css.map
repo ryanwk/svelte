@@ -5,8 +5,8 @@
     "../App.svelte"
   ],
   "sourcesContent": [
-    "<script>\n  export let name;\n  let age = 28;\n\n  function incrementAge() {\n    age += 1;\n  }\n</script>\n\n<style>\n  h1 {\n    color: purple;\n  }\n</style>\n\n<h1>Hello {name}, my age is {age}!</h1>\n<button on:click={incrementAge}>Change Age</button>\n"
+    "<script>\n  export let name;\n  let age = 28;\n\n  // this is a labeled statement \"$:\", it's like a loop\n  $: uppercaseName = name.toUpperCase();\n\n  function incrementAge() {\n    age += 1;\n  }\n  function changeName() {\n    name = \"Ryan\";\n  }\n</script>\n\n<style>\n  h1 {\n    color: purple;\n  }\n</style>\n\n<h1>Hello {uppercaseName}, my age is {age}!</h1>\n<button on:click={incrementAge}>Change Age</button>\n<button on:click={changeName}>Change Name</button>\n"
   ],
   "names": [],
-  "mappings": "AAUE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC"
+  "mappings": "AAgBE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC"
 }
