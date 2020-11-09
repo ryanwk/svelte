@@ -1,5 +1,5 @@
 <script>
-    export let userName;
+  export let userName;
 </script>
 
 <style>
@@ -57,9 +57,7 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
-      <img src="" alt="" />
-    </div>
+    <div class="thumb"><img src="" alt="" /></div>
     <div class="user-data">
       <h1>{userName}</h1>
       <h2>Job Title</h2>
