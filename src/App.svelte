@@ -1,16 +1,18 @@
 <script>
   import ContactCard from "./ContactCard.svelte";
 
-  let name = "Ryan";
-  let age = 28;
+  let name = "Max";
+  let age = 30;
 
-  // this is a labeled statement "$:", reactive variables
+  // let uppercaseName; not required!
+
   $: uppercaseName = name.toUpperCase();
 
-  // $: console.log(name);
+  $: console.log(name);
 
-  $: if (name == "ryry") {
-    age = 28;
+  $: if (name === "Maximilian") {
+    console.log("It runs!");
+    age = 31;
   }
 
   function incrementAge() {
@@ -18,8 +20,9 @@
   }
 
   function changeName() {
-    name = "ryry";
+    name = "Maximilian";
   }
+
   function nameInput(event) {
     const enteredValue = event.target.value;
     name = enteredValue;
@@ -34,12 +37,7 @@
 
 <h1>Hello {uppercaseName}, my age is {age}!</h1>
 <button on:click={incrementAge}>Change Age</button>
-<!-- <button on:click={changeName}>Change Name</button> -->
-<!-- specify data input & output -->
-<!-- <input type="text" value={name} on:input={nameInput} /> -->
-<!-- binding - shorthand for above -->
-<input type="text" bind:value={name} on:input={nameInput} />
+<!-- <button on:click="{changeName}">Change Name</button> -->
+<input type="text" value={name} on:input={nameInput} />
 
-<!-- since I've imported "ContactCard.svelte" I can use it right in the markup with self closing brackets -->
-<!-- pascal case are compiles as svelte components whereas standard html case is compiles as html components -->
 <ContactCard />
