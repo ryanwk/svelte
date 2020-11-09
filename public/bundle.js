@@ -386,15 +386,15 @@ var app = (function () {
     			p.textContent = "A short description";
     			if (img.src !== (img_src_value = "")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
-    			add_location(img, file, 5, 9, 44);
-    			add_location(div0, file, 5, 4, 39);
-    			add_location(h1, file, 7, 6, 88);
-    			add_location(h2, file, 8, 6, 113);
-    			add_location(div1, file, 6, 4, 76);
-    			add_location(header, file, 4, 2, 26);
-    			add_location(p, file, 12, 4, 167);
-    			add_location(div2, file, 11, 2, 157);
-    			add_location(div3, file, 3, 0, 18);
+    			add_location(img, file, 11, 9, 174);
+    			add_location(div0, file, 11, 4, 169);
+    			add_location(h1, file, 13, 6, 218);
+    			add_location(h2, file, 14, 6, 243);
+    			add_location(div1, file, 12, 4, 206);
+    			add_location(header, file, 10, 2, 156);
+    			add_location(p, file, 18, 4, 297);
+    			add_location(div2, file, 17, 2, 287);
+    			add_location(div3, file, 9, 0, 148);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
