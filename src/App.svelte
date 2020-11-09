@@ -1,13 +1,13 @@
 <script>
   import ContactCard from "./ContactCard.svelte";
 
-  export let name;
+  let name = "Ryan";
   let age = 28;
 
   // this is a labeled statement "$:", reactive variables
   $: uppercaseName = name.toUpperCase();
 
-  $: console.log(name);
+  // $: console.log(name);
 
   $: if (name == "ryry") {
     age = 28;
