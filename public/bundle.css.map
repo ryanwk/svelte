@@ -5,8 +5,8 @@
     "../App.svelte"
   ],
   "sourcesContent": [
-    "<script>\n  export let name;\n  let age = 28;\n\n  // this is a labeled statement \"$:\", it's like a loop\n  $: uppercaseName = name.toUpperCase();\n\n  function incrementAge() {\n    age += 1;\n  }\n  function changeName() {\n    name = \"Ryan\";\n  }\n</script>\n\n<style>\n  h1 {\n    color: purple;\n  }\n</style>\n\n<h1>Hello {uppercaseName}, my age is {age}!</h1>\n<button on:click={incrementAge}>Change Age</button>\n<button on:click={changeName}>Change Name</button>\n"
+    "<script>\n  export let name;\n  let age = 28;\n\n  // this is a labeled statement \"$:\", reactive variables\n  $: uppercaseName = name.toUpperCase();\n\n  $: console.log(name);\n\n  $: if (name == \"ryry\") {\n    age = 28;\n  }\n\n  function incrementAge() {\n    age += 1;\n  }\n\n  function changeName() {\n    name = \"ryry\";\n  }\n  function nameInput(event) {\n    const enteredValue = event.target.value;\n    name = enteredValue;\n  }\n</script>\n\n<style>\n  h1 {\n    color: purple;\n  }\n</style>\n\n<h1>Hello {uppercaseName}, my age is {age}!</h1>\n<button on:click={incrementAge}>Change Age</button>\n<!-- <button on:click={changeName}>Change Name</button> -->\n\n<!-- specify data input & output -->\n<!-- <input type=\"text\" value={name} on:input={nameInput} /> -->\n\n<!-- binding - shorthand for above -->\n<input type=\"text\" bind:value={name} on:input={nameInput} />\n"
   ],
   "names": [],
-  "mappings": "AAgBE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC"
+  "mappings": "AA2BE,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC"
 }
