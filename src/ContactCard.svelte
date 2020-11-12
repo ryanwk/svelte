@@ -53,9 +53,7 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
-      <img src="" alt="" />
-    </div>
+    <div class="thumb"><img src="" alt="" /></div>
     <div class="user-data">
       <h1>User Name</h1>
       <h2>Job Title</h2>
