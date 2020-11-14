@@ -1,72 +1,36 @@
 <script>
   import ContactCard from "./ContactCard.svelte";
-  import CourseGoal from "./CourseGoal.svelte";
 
-  let goal = "input course goal";
   let name = "Max";
   let title = "";
   let image = "";
   let description = "";
-  let age = 30;
-
-  // let uppercaseName; not required!
-
-  $: uppercaseName = name.toUpperCase();
-
-  $: console.log(name);
-
-  $: if (name === "Maximilian") {
-    console.log("It runs!");
-    age = 31;
-  }
-
-  function incrementAge() {
-    age += 1;
-  }
-
-  function changeName() {
-    name = "Maximilian";
-  }
-
-  function nameInput(event) {
-    const enteredValue = event.target.value;
-    name = enteredValue;
-  }
 </script>
 
 <style>
-  h1 {
-    color: purple;
+  #form {
+    width: 30rem;
+    max-width: 100%;
   }
 </style>
 
-<h1>Hello {uppercaseName}, my age is {age}!</h1>
-<button on:click={incrementAge}>Change Age</button>
-<!-- <button on:click="{changeName}">Change Name</button> -->
-<!-- <input type="text" value={name} on:input={nameInput} /> -->
-<input type="text" bind:value={name} />
-<input type="text" bind:value={title} />
-<input type="text" bind:value={image} />
-<textarea rows="3" bind:value={description} />
+<div id="form">
+  <div class="form-control">
+    <label for="userName">User Name</label>
+    <input type="text" bind:value={name} id="userName" />
+  </div>
+  <div class="form-control">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" bind:value={title} id="jobTitle" />
+  </div>
+  <div class="form-control">
+    <label for="image">Image URL</label>
+    <input type="text" bind:value={image} id="image" />
+  </div>
+  <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea rows="3" bind:value={description} id="desc" />
+  </div>
+</div>
 
 <ContactCard userName={name} jobTitle={title} {description} userImage={image} />
-
-<h1>Assignment</h1>
-
-<p>Solve these tasks.</p>
-
-<ol>
-  <li>Add an input field that allows users to enter a course goal.</li>
-  <li>Output the user input in a h1 tag.</li>
-  <li>
-    Color the output red (e.g. by adding a class) if it contains at least one
-    exclamation mark.
-  </li>
-  <li>
-    Put the h1 tag + output into a separate component to which you pass the user
-    input
-  </li>
-</ol>
-
-<input type="text" bind:value={goal} />
-<CourseGoal courseGoal={goal} />
