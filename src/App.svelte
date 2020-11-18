@@ -72,4 +72,6 @@
     jobTitle={contact.jobTitle}
     description={contact.desc}
     userImage={contact.imageUrl} />
+{:else}
+  <p>Please start adding contacts, there currently are 0 contacts present.</p>
 {/each}
