@@ -66,7 +66,8 @@
   <p>Please complete the fields above then press the button</p>
 {/if}
 
-{#each createdContacts as contact}
+{#each createdContacts as contact, i}
+  <h1># {i + 1}</h1>
   <ContactCard
     userName={contact.name}
     jobTitle={contact.jobTitle}
