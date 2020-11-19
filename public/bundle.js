@@ -37,12 +37,6 @@ var app = (function () {
     function detach(node) {
         node.parentNode.removeChild(node);
     }
-    function destroy_each(iterations, detaching) {
-        for (let i = 0; i < iterations.length; i += 1) {
-            if (iterations[i])
-                iterations[i].d(detaching);
-        }
-    }
     function element(name) {
         return document.createElement(name);
     }
@@ -183,6 +177,96 @@ var app = (function () {
                 }
             });
             block.o(local);
+        }
+    }
+    function outro_and_destroy_block(block, lookup) {
+        transition_out(block, 1, 1, () => {
+            lookup.delete(block.key);
+        });
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next);
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error('Cannot have duplicate keys in a keyed each');
+            }
+            keys.add(key);
         }
     }
     function create_component(block) {
@@ -614,12 +698,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
-    	child_ctx[13] = i;
+    	child_ctx[13] = list[i];
+    	child_ctx[15] = i;
     	return child_ctx;
     }
 
-    // (65:0) {:else}
+    // (75:0) {:else}
     function create_else_block_1(ctx) {
     	let p;
 
@@ -627,7 +711,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Please complete the fields above then press the button";
-    			add_location(p, file$1, 65, 2, 1408);
+    			add_location(p, file$1, 75, 2, 1701);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -641,14 +725,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(65:0) {:else}",
+    		source: "(75:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:0) {#if formState === 'invalid'}
+    // (73:0) {#if formState === 'invalid'}
     function create_if_block(ctx) {
     	let p;
 
@@ -656,7 +740,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Invalid input";
-    			add_location(p, file$1, 63, 2, 1377);
+    			add_location(p, file$1, 73, 2, 1670);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -670,14 +754,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(63:0) {#if formState === 'invalid'}",
+    		source: "(73:0) {#if formState === 'invalid'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:0) {:else}
+    // (86:0) {:else}
     function create_else_block(ctx) {
     	let p;
 
@@ -685,7 +769,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Please start adding contacts, there currently are 0 contacts present.";
-    			add_location(p, file$1, 76, 2, 1688);
+    			add_location(p, file$1, 86, 2, 1994);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -699,18 +783,18 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(76:0) {:else}",
+    		source: "(86:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:0) {#each createdContacts as contact, i}
-    function create_each_block(ctx) {
+    // (79:0) {#each createdContacts as contact, i (contact.id)}
+    function create_each_block(key_1, ctx) {
     	let h1;
     	let t0;
-    	let t1_value = /*i*/ ctx[13] + 1 + "";
+    	let t1_value = /*i*/ ctx[15] + 1 + "";
     	let t1;
     	let t2;
     	let contactcard;
@@ -718,22 +802,25 @@ var app = (function () {
 
     	contactcard = new ContactCard({
     			props: {
-    				userName: /*contact*/ ctx[11].name,
-    				jobTitle: /*contact*/ ctx[11].jobTitle,
-    				description: /*contact*/ ctx[11].desc,
-    				userImage: /*contact*/ ctx[11].imageUrl
+    				userName: /*contact*/ ctx[13].name,
+    				jobTitle: /*contact*/ ctx[13].jobTitle,
+    				description: /*contact*/ ctx[13].desc,
+    				userImage: /*contact*/ ctx[13].imageUrl
     			},
     			$$inline: true
     		});
 
     	const block = {
+    		key: key_1,
+    		first: null,
     		c: function create() {
     			h1 = element("h1");
     			t0 = text("# ");
     			t1 = text(t1_value);
     			t2 = space();
     			create_component(contactcard.$$.fragment);
-    			add_location(h1, file$1, 69, 2, 1517);
+    			add_location(h1, file$1, 79, 2, 1823);
+    			this.first = h1;
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -744,11 +831,12 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
+    			if ((!current || dirty & /*createdContacts*/ 32) && t1_value !== (t1_value = /*i*/ ctx[15] + 1 + "")) set_data_dev(t1, t1_value);
     			const contactcard_changes = {};
-    			if (dirty & /*createdContacts*/ 32) contactcard_changes.userName = /*contact*/ ctx[11].name;
-    			if (dirty & /*createdContacts*/ 32) contactcard_changes.jobTitle = /*contact*/ ctx[11].jobTitle;
-    			if (dirty & /*createdContacts*/ 32) contactcard_changes.description = /*contact*/ ctx[11].desc;
-    			if (dirty & /*createdContacts*/ 32) contactcard_changes.userImage = /*contact*/ ctx[11].imageUrl;
+    			if (dirty & /*createdContacts*/ 32) contactcard_changes.userName = /*contact*/ ctx[13].name;
+    			if (dirty & /*createdContacts*/ 32) contactcard_changes.jobTitle = /*contact*/ ctx[13].jobTitle;
+    			if (dirty & /*createdContacts*/ 32) contactcard_changes.description = /*contact*/ ctx[13].desc;
+    			if (dirty & /*createdContacts*/ 32) contactcard_changes.userImage = /*contact*/ ctx[13].imageUrl;
     			contactcard.$set(contactcard_changes);
     		},
     		i: function intro(local) {
@@ -771,7 +859,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(69:0) {#each createdContacts as contact, i}",
+    		source: "(79:0) {#each createdContacts as contact, i (contact.id)}",
     		ctx
     	});
 
@@ -800,9 +888,15 @@ var app = (function () {
     	let t10;
     	let textarea;
     	let t11;
-    	let button;
+    	let button0;
     	let t13;
-    	let t14;
+    	let button1;
+    	let t15;
+    	let button2;
+    	let t17;
+    	let t18;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
     	let each_1_anchor;
     	let current;
     	let mounted;
@@ -817,15 +911,14 @@ var app = (function () {
     	let if_block = current_block_type(ctx);
     	let each_value = /*createdContacts*/ ctx[5];
     	validate_each_argument(each_value);
-    	let each_blocks = [];
+    	const get_key = ctx => /*contact*/ ctx[13].id;
+    	validate_each_keys(ctx, each_value, get_each_context, get_key);
 
     	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    		let child_ctx = get_each_context(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
     	}
-
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
 
     	let each_1_else = null;
 
@@ -860,11 +953,17 @@ var app = (function () {
     			t10 = space();
     			textarea = element("textarea");
     			t11 = space();
-    			button = element("button");
-    			button.textContent = "Add Contact Card";
+    			button0 = element("button");
+    			button0.textContent = "Add Contact Card";
     			t13 = space();
+    			button1 = element("button");
+    			button1.textContent = "Delete First";
+    			t15 = space();
+    			button2 = element("button");
+    			button2.textContent = "Delete Last";
+    			t17 = space();
     			if_block.c();
-    			t14 = space();
+    			t18 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
@@ -877,37 +976,39 @@ var app = (function () {
     			}
 
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file$1, 43, 4, 756);
+    			add_location(label0, file$1, 51, 4, 945);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file$1, 44, 4, 800);
+    			add_location(input0, file$1, 52, 4, 989);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file$1, 42, 2, 725);
+    			add_location(div0, file$1, 50, 2, 914);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file$1, 47, 4, 896);
+    			add_location(label1, file$1, 55, 4, 1085);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file$1, 48, 4, 940);
+    			add_location(input1, file$1, 56, 4, 1129);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file$1, 46, 2, 865);
+    			add_location(div1, file$1, 54, 2, 1054);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file$1, 51, 4, 1037);
+    			add_location(label2, file$1, 59, 4, 1226);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file$1, 52, 4, 1078);
+    			add_location(input2, file$1, 60, 4, 1267);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file$1, 50, 2, 1006);
+    			add_location(div2, file$1, 58, 2, 1195);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file$1, 55, 4, 1172);
+    			add_location(label3, file$1, 63, 4, 1361);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file$1, 56, 4, 1214);
+    			add_location(textarea, file$1, 64, 4, 1403);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file$1, 54, 2, 1141);
+    			add_location(div3, file$1, 62, 2, 1330);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file$1, 41, 0, 707);
-    			add_location(button, file$1, 60, 0, 1288);
+    			add_location(div4, file$1, 49, 0, 896);
+    			add_location(button0, file$1, 68, 0, 1477);
+    			add_location(button1, file$1, 69, 0, 1533);
+    			add_location(button2, file$1, 70, 0, 1586);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -938,10 +1039,14 @@ var app = (function () {
     			append_dev(div3, textarea);
     			set_input_value(textarea, /*description*/ ctx[3]);
     			insert_dev(target, t11, anchor);
-    			insert_dev(target, button, anchor);
+    			insert_dev(target, button0, anchor);
     			insert_dev(target, t13, anchor);
+    			insert_dev(target, button1, anchor);
+    			insert_dev(target, t15, anchor);
+    			insert_dev(target, button2, anchor);
+    			insert_dev(target, t17, anchor);
     			if_block.m(target, anchor);
-    			insert_dev(target, t14, anchor);
+    			insert_dev(target, t18, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(target, anchor);
@@ -957,11 +1062,13 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[7]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[8]),
-    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[9]),
-    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[10]),
-    					listen_dev(button, "click", /*addContact*/ ctx[6], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[9]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[10]),
+    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[11]),
+    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[12]),
+    					listen_dev(button0, "click", /*addContact*/ ctx[6], false, false, false),
+    					listen_dev(button1, "click", /*deleteFirst*/ ctx[7], false, false, false),
+    					listen_dev(button2, "click", /*deleteLast*/ ctx[8], false, false, false)
     				];
 
     				mounted = true;
@@ -990,35 +1097,16 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(t14.parentNode, t14);
+    					if_block.m(t18.parentNode, t18);
     				}
     			}
 
     			if (dirty & /*createdContacts*/ 32) {
-    				each_value = /*createdContacts*/ ctx[5];
+    				const each_value = /*createdContacts*/ ctx[5];
     				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-    					}
-    				}
-
     				group_outros();
-
-    				for (i = each_value.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
+    				validate_each_keys(ctx, each_value, get_each_context, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block, each_1_anchor, get_each_context);
     				check_outros();
 
     				if (each_value.length) {
@@ -1043,8 +1131,6 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			each_blocks = each_blocks.filter(Boolean);
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				transition_out(each_blocks[i]);
     			}
@@ -1054,11 +1140,19 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div4);
     			if (detaching) detach_dev(t11);
-    			if (detaching) detach_dev(button);
+    			if (detaching) detach_dev(button0);
     			if (detaching) detach_dev(t13);
+    			if (detaching) detach_dev(button1);
+    			if (detaching) detach_dev(t15);
+    			if (detaching) detach_dev(button2);
+    			if (detaching) detach_dev(t17);
     			if_block.d(detaching);
-    			if (detaching) detach_dev(t14);
-    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(t18);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d(detaching);
+    			}
+
     			if (detaching) detach_dev(each_1_anchor);
     			if (each_1_else) each_1_else.d(detaching);
     			mounted = false;
@@ -1096,6 +1190,7 @@ var app = (function () {
     		$$invalidate(5, createdContacts = [
     			...createdContacts,
     			{
+    				id: Math.random(),
     				name,
     				jobTitle: title,
     				imgUrl: image,
@@ -1104,6 +1199,14 @@ var app = (function () {
     		]);
 
     		$$invalidate(4, formState = "done");
+    	}
+
+    	function deleteFirst() {
+    		$$invalidate(5, createdContacts = createdContacts.slice(1));
+    	}
+
+    	function deleteLast() {
+    		$$invalidate(5, createdContacts = createdContacts.slice(0, -1));
     	}
 
     	const writable_props = [];
@@ -1140,7 +1243,9 @@ var app = (function () {
     		description,
     		formState,
     		createdContacts,
-    		addContact
+    		addContact,
+    		deleteFirst,
+    		deleteLast
     	});
 
     	$$self.$inject_state = $$props => {
@@ -1164,6 +1269,8 @@ var app = (function () {
     		formState,
     		createdContacts,
     		addContact,
+    		deleteFirst,
+    		deleteLast,
     		input0_input_handler,
     		input1_input_handler,
     		input2_input_handler,

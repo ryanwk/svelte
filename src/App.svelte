@@ -22,6 +22,7 @@
     createdContacts = [
       ...createdContacts,
       {
+        id: Math.random(),
         name: name,
         jobTitle: title,
         imgUrl: image,
@@ -29,6 +30,13 @@
       },
     ];
     formState = "done";
+  }
+
+  function deleteFirst() {
+    createdContacts = createdContacts.slice(1);
+  }
+  function deleteLast() {
+    createdContacts = createdContacts.slice(0, -1);
   }
 </script>
 
@@ -59,6 +67,8 @@
 </div>
 
 <button on:click={addContact}>Add Contact Card</button>
+<button on:click={deleteFirst}>Delete First</button>
+<button on:click={deleteLast}>Delete Last</button>
 
 {#if formState === 'invalid'}
   <p>Invalid input</p>
@@ -66,7 +76,7 @@
   <p>Please complete the fields above then press the button</p>
 {/if}
 
-{#each createdContacts as contact, i}
+{#each createdContacts as contact, i (contact.id)}
   <h1># {i + 1}</h1>
   <ContactCard
     userName={contact.name}
