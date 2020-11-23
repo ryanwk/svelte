@@ -1,42 +1,23 @@
 <script>
-  import ContactCard from "./ContactCard.svelte";
+  let enteredPassword = " ";
+  let passwordValidity = "short";
+  let passwords = [];
 
-  let name = "Ryan";
-  let title = "";
-  let image = "";
-  let description = "";
-  let formState = "empty";
+  $: if (enteredPassword.trim().length < 5) {
+    passwordValidity = "short";
+  } else if (enteredPassword.trim().length > 10) {
+    passwordValidity = "long";
+  } else passwordValidity = "good";
 
-  let createdContacts = [];
-
-  function addContact() {
-    if (
-      name.trim().length == 0 ||
-      title.trim().length == 0 ||
-      image.trim().length == 0 ||
-      description.trim().length == 0
-    ) {
-      formState = "invalid";
-      return;
+  function confirmPassword() {
+    if (passwordValidity === "good") {
+      passwords = [...passwords, enteredPassword];
     }
-    createdContacts = [
-      ...createdContacts,
-      {
-        id: Math.random(),
-        name: name,
-        jobTitle: title,
-        imgUrl: image,
-        desc: description,
-      },
-    ];
-    formState = "done";
   }
-
-  function deleteFirst() {
-    createdContacts = createdContacts.slice(1);
-  }
-  function deleteLast() {
-    createdContacts = createdContacts.slice(0, -1);
+  function removePassword(index) {
+    passwords = passwords.filter((pw, idx) => {
+      return idx !== index;
+    });
   }
 </script>
 
@@ -47,42 +28,48 @@
   }
 </style>
 
-<div id="form">
-  <div class="form-control">
-    <label for="userName">User Name</label>
-    <input type="text" bind:value={name} id="userName" />
-  </div>
-  <div class="form-control">
-    <label for="jobTitle">Job Title</label>
-    <input type="text" bind:value={title} id="jobTitle" />
-  </div>
-  <div class="form-control">
-    <label for="image">Image URL</label>
-    <input type="text" bind:value={image} id="image" />
-  </div>
-  <div class="form-control">
-    <label for="desc">Description</label>
-    <textarea rows="3" bind:value={description} id="desc" />
-  </div>
+<h1>Assignment</h1>
+
+<p>Solve these tasks.</p>
+
+<ol>
+  <li>
+    Add a enteredPassword input field and save the user input in a variable.
+  </li>
+  <li>
+    Output "Too short" if the password is shorter than 5 characters and "Too
+    long" if it's longer than 10.
+  </li>
+  <li>
+    Output the password in a paragraph tag (below the input or below the
+    warnings) if it's between these boundaries.
+  </li>
+  <li>
+    Add a button and let the user add the passwords to an array (an array that
+    grows with every password that was entered - not too long not too short).
+  </li>
+  <li>Output the array values (= passwords) in a unordered list (ul tag).</li>
+  <li>Bonus: If a password is clicked, remove it from the list.</li>
+</ol>
+
+<div class="form">
+  <h3>Password</h3>
+  <input type="text" bind:value={enteredPassword} /><button
+    on:click={confirmPassword}>Confirm Password
+  </button>
 </div>
 
-<button on:click={addContact}>Add Contact Card</button>
-<button on:click={deleteFirst}>Delete First</button>
-<button on:click={deleteLast}>Delete Last</button>
-
-{#if formState === 'invalid'}
-  <p>Invalid input</p>
+<!-- password input field validation -->
+{#if passwordValidity === 'long'}
+  <p>Password is too long</p>
+{:else if passwordValidity === 'short'}
+  <p>Password is too short</p>
 {:else}
-  <p>Please complete the fields above then press the button</p>
+  <p>Password: {enteredPassword}</p>
 {/if}
 
-{#each createdContacts as contact, i (contact.id)}
-  <h1># {i + 1}</h1>
-  <ContactCard
-    userName={contact.name}
-    jobTitle={contact.jobTitle}
-    description={contact.desc}
-    userImage={contact.imageUrl} />
-{:else}
-  <p>Please start adding contacts, there currently are 0 contacts present.</p>
-{/each}
+<ul>
+  {#each passwords as pw, i}
+    <li on:click={removePassword.bind(this, i)}>{pw}</li>
+  {/each}
+</ul>
