@@ -24,6 +24,8 @@
       contactEmail: "swim@test.com",
     },
   ];
+
+  function addMeetup() {}
 </script>
 
 <style>
@@ -35,7 +37,7 @@
 <Header />
 
 <main>
-  <form on:submit|preventDefault>
+  <form on:submit|preventDefault={addMeetup}>
     <div class="form-control">
       <label for="title">Title</label>
       <input type="text" id="title" />
