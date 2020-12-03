@@ -34,4 +34,6 @@
 
 <Header />
 
-<main />
+<main>
+  <MeetupGrid
+</main>
