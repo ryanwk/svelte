@@ -35,7 +35,7 @@
 <Header />
 
 <main>
-  <form>
+  <form on:submit|preventDefault>
     <div class="form-control">
       <label for="title">Title</label>
       <input type="text" id="title" />
@@ -60,6 +60,7 @@
       <label for="description">Description</label>
       <textarea rows="3" id="description" />
     </div>
+    <button type="submit">Save</button>
   </form>
   <MeetupGrid {meetups} />
 </main>
