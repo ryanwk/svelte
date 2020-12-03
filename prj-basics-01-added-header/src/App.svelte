@@ -2,6 +2,12 @@
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import Header from "./UI/Header.svelte";
 
+  let title = "";
+  let subtitle = "";
+  let address = "";
+  let email = "";
+  let description = "";
+
   const meetups = [
     {
       id: "m1",
