@@ -33,7 +33,7 @@
   ];
 
   function addMeetup() {
-    const newMeetup = {
+    let newMeetup = {
       id: Math.random().toString(),
       title: title,
       subtitle: subtitle,
