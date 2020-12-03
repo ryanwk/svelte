@@ -40,6 +40,26 @@
       <label for="title">Title</label>
       <input type="text" id="title" />
     </div>
+    <div class="form-control">
+      <label for="subtitle">Subtitle</label>
+      <input type="text" id="subtitle" />
+    </div>
+    <div class="form-control">
+      <label for="address">Address</label>
+      <input type="text" id="address" />
+    </div>
+    <div class="form-control">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" id="imageUrl" />
+    </div>
+    <div class="form-control">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" />
+    </div>
+    <div class="form-control">
+      <label for="description">Description</label>
+      <input type="text" id="description" />
+    </div>
   </form>
   <MeetupGrid {meetups} />
 </main>
