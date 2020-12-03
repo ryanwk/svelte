@@ -9,7 +9,7 @@
   let description = "";
   let imageUrl = "";
 
-  const meetups = [
+  let meetups = [
     {
       id: "m1",
       title: "Coding Bootcamp",
