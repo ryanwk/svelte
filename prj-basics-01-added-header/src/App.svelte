@@ -58,7 +58,7 @@
     </div>
     <div class="form-control">
       <label for="description">Description</label>
-      <input type="text" id="description" />
+      <textarea rows="3" id="description" />
     </div>
   </form>
   <MeetupGrid {meetups} />
