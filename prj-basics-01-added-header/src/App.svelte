@@ -27,9 +27,11 @@
 </script>
 
 <style>
-  #meetups {
+  main {
     margin-top: 5rem;
   }
 </style>
 
 <Header />
+
+<main />
