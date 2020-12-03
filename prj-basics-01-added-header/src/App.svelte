@@ -9,17 +9,17 @@
       subtitle: "Learn to code in 2 hours",
       description: "In this meetup we will have experts teach you how to code",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/4/4c/UploadWizard_uploading_multiple_files.png",
-      address: "27th Nerd Road, 433245 New York",
+        "https://cdn.stocksnap.io/img-thumbs/960w/programming-code_1STVFMTBJY.jpg",
+      address: "27th Nerd Road, 4]33245 New York",
       contactEmail: "code@test.com",
     },
     {
       id: "m2",
-      title: "swim together",
-      subtitle: "let go swimming",
-      description: "In this meetup we will swim at the local watering hole",
+      title: "Swimmers Meetup",
+      subtitle: "Let's go swimming!",
+      description: "In this meetup we will go swimming",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Wroclaw_-_Biblioteka_Uniwersytecka_i_Kosciol_NMP_na_Piasku_01.jpg/2560px-Wroclaw_-_Biblioteka_Uniwersytecka_i_Kosciol_NMP_na_Piasku_01.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbkxJUFalQvzsBx7fEDhakXolossPx-o9_Q&usqp=CAU",
       address: "27th swim lane, 433245 New York",
       contactEmail: "swim@test.com",
     },
