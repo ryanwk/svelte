@@ -51,23 +51,23 @@
     </div>
     <div class="form-control">
       <label for="subtitle">Subtitle</label>
-      <input type="text" id="subtitle" />
+      <input type="text" id="subtitle" bind:value={subtitle} />
     </div>
     <div class="form-control">
       <label for="address">Address</label>
-      <input type="text" id="address" />
+      <input type="text" id="address" bind:value={address} />
     </div>
     <div class="form-control">
       <label for="imageUrl">Image URL</label>
-      <input type="text" id="imageUrl" />
+      <input type="text" id="imageUrl" bind:value={imageUrl} />
     </div>
     <div class="form-control">
       <label for="email">E-mail</label>
-      <input type="email" id="email" />
+      <input type="email" id="email" bind:value={email} />
     </div>
     <div class="form-control">
       <label for="description">Description</label>
-      <textarea rows="3" id="description" />
+      <textarea rows="3" id="description" bind:value={description} />
     </div>
     <button type="submit">Save</button>
   </form>
