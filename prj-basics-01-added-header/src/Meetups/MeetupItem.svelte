@@ -1,3 +1,11 @@
+<script>
+  export let title;
+  export let subtitle;
+  export let description;
+  export let imageUrl;
+  export let email;
+</script>
+
 <style>
   article {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -54,11 +62,12 @@
 
 <article>
   <header />
-  <h1>TITLE</h1>
-  <h2>SUBTITLE</h2>
-  <div class="Image"><img src="" alt="" /></div>
+  <h1>{title}</h1>
+  <h2>{subtitle}</h2>
+  <div class="Image"><img src={imageUrl} alt={title} /></div>
   <div class="content">
-    <p />
+    <p>{description}</p>
   </div>
+  <a href="mailto:{email}">Contact</a>
   <footer><button>Show Details</button><button>Favorite</button></footer>
 </article>
