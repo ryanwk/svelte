@@ -1,5 +1,5 @@
 <script>
-  import MeetupItem from "./Meetups/MeetupItem.svelte";
+  import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import Header from "./UI/Header.svelte";
 
   const meetups = [
