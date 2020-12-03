@@ -1,4 +1,5 @@
 <script>
+  import MeetupItem from "./MeetupItem.svelte";
 </script>
 
 <section id="meetups">
