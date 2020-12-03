@@ -7,6 +7,7 @@
   let address = "";
   let email = "";
   let description = "";
+  let imageUrl = "";
 
   const meetups = [
     {
@@ -46,7 +47,7 @@
   <form on:submit|preventDefault={addMeetup}>
     <div class="form-control">
       <label for="title">Title</label>
-      <input type="text" id="title" />
+      <input type="text" id="title" bind:value={title} />
     </div>
     <div class="form-control">
       <label for="subtitle">Subtitle</label>
