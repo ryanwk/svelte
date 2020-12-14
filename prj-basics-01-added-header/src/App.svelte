@@ -76,10 +76,12 @@
       value={address}
       on:input={(event) => (address = event.EventTarget.value)} />
 
-    <div class="form-control">
-      <label for="imageUrl">Image URL</label>
-      <input type="text" id="imageUrl" bind:value={imageUrl} />
-    </div>
+    <TextInput
+      id="imageUrl"
+      label="Image Url"
+      value={imageUrl}
+      on:input={(event) => (imageUrl = event.EventTarget.value)} />
+
     <div class="form-control">
       <label for="email">E-mail</label>
       <input type="email" id="email" bind:value={email} />
