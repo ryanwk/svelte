@@ -64,10 +64,12 @@
       value={title}
       on:input={(event) => (title = event.EventTarget.value)} />
 
-    <div class="form-control">
-      <label for="title">Title</label>
-      <input type="text" id="title" bind:value={title} />
-    </div>
+    <TextInput
+      id="subtitle"
+      label="Subtitle"
+      value={subtitle}
+      on:input={(event) => (subtitle = event.EventTarget.value)} />
+
     <div class="form-control">
       <label for="subtitle">Subtitle</label>
       <input type="text" id="subtitle" bind:value={subtitle} />
