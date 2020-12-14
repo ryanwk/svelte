@@ -1,6 +1,7 @@
 <script>
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import Header from "./UI/Header.svelte";
+  import TextInput from "./UI/TextInput.svelte";
 
   let title = "";
   let subtitle = "";
