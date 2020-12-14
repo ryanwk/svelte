@@ -5,8 +5,8 @@
     "../App.svelte"
   ],
   "sourcesContent": [
-    "<script>\n</script>\n\n<style>\n  header {\n    position: fixed;\n    width: 100%;\n    top: 0;\n  }\n</style>\n\n<header>\n  <h1>Meet Ups</h1>\n</header>\n"
+    "<style>\n  article {\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);\n    border-radius: 5px;\n    background: white;\n    margin: 1rem;\n  }\n\n  header,\n  .content,\n  footer {\n    padding: 1rem;\n  }\n\n  .image {\n    width: 100%;\n    height: 14rem;\n  }\n\n  .image img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n  }\n\n  h1 {\n    font-size: 1.25rem;\n    margin: 0.5rem 0;\n    font-family: \"Roboto Slab\", sans-serif;\n  }\n\n  h1.is-favorite {\n    background: #01a129;\n    color: white;\n    padding: 0 0.5rem;\n    border-radius: 5px;\n  }\n\n  h2 {\n    font-size: 1rem;\n    color: #808080;\n    margin: 0.5rem 0;\n  }\n\n  p {\n    font-size: 1.25rem;\n    margin: 0;\n  }\n\n  div {\n    text-align: right;\n  }\n</style>\n\n<header>\n  <h1>Meet Ups</h1>\n</header>\n"
   ],
   "names": [],
-  "mappings": "AAIE,MAAM,cAAC,CAAC,AACN,QAAQ,CAAE,KAAK,CACf,KAAK,CAAE,IAAI,CACX,GAAG,CAAE,CAAC,AACR,CAAC"
+  "mappings": "AAQE,MAAM,aAEC,CAAC,AACN,OAAO,CAAE,IAAI,AACf,CAAC,AAaD,EAAE,aAAC,CAAC,AACF,SAAS,CAAE,OAAO,CAClB,MAAM,CAAE,MAAM,CAAC,CAAC,CAChB,WAAW,CAAE,aAAa,CAAC,CAAC,UAAU,AACxC,CAAC"
 }

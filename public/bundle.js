@@ -308,9 +308,10 @@ var app = (function () {
     			header = element("header");
     			h1 = element("h1");
     			h1.textContent = "Meet Ups";
-    			add_location(h1, file, 12, 2, 114);
-    			attr_dev(header, "class", "svelte-1ah6c1");
-    			add_location(header, file, 11, 0, 103);
+    			attr_dev(h1, "class", "svelte-8tjse");
+    			add_location(h1, file, 55, 2, 721);
+    			attr_dev(header, "class", "svelte-8tjse");
+    			add_location(header, file, 54, 0, 710);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
