@@ -70,14 +70,12 @@
       value={subtitle}
       on:input={(event) => (subtitle = event.EventTarget.value)} />
 
-    <div class="form-control">
-      <label for="subtitle">Subtitle</label>
-      <input type="text" id="subtitle" bind:value={subtitle} />
-    </div>
-    <div class="form-control">
-      <label for="address">Address</label>
-      <input type="text" id="address" bind:value={address} />
-    </div>
+    <TextInput
+      id="address"
+      label="Address"
+      value={address}
+      on:input={(event) => (address = event.EventTarget.value)} />
+
     <div class="form-control">
       <label for="imageUrl">Image URL</label>
       <input type="text" id="imageUrl" bind:value={imageUrl} />
