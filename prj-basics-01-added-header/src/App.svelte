@@ -58,6 +58,12 @@
 
 <main>
   <form on:submit|preventDefault={addMeetup}>
+    <TextInput
+      id="title"
+      label="Title"
+      value={title}
+      on:input={(event) => (title = event.EventTarget.value)} />
+
     <div class="form-control">
       <label for="title">Title</label>
       <input type="text" id="title" bind:value={title} />
