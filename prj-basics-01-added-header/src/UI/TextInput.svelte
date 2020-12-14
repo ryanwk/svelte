@@ -4,6 +4,7 @@
   export let label;
   export let rows;
   export let value;
+  export let type;
 </script>
 
 <style>
@@ -39,9 +40,13 @@
   }
 </style>
 
+<!-- custom TextInput component html -->
+
 <div class="form-control">
-  <label for={id}>label</label>
+  <label for={id}>{label}</label>
   {#if controlType === 'textarea'}
     <textarea {rows} {id} vaue={value} on:input />
-  {:else}<input type="text" {id} vaue={value} on:input />{/if}
+  {:else}<input {type} {id} vaue={value} on:input />{/if}
 </div>
+
+<!-- end custom TextInput component html -->

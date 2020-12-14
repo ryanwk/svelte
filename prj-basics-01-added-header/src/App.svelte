@@ -62,30 +62,32 @@
       id="title"
       label="Title"
       value={title}
-      on:input={(event) => (title = event.EventTarget.value)} />
+      on:input={(event) => (title = event.target.value)} />
 
     <TextInput
       id="subtitle"
       label="Subtitle"
       value={subtitle}
-      on:input={(event) => (subtitle = event.EventTarget.value)} />
+      on:input={(event) => (subtitle = event.target.value)} />
 
     <TextInput
       id="address"
       label="Address"
       value={address}
-      on:input={(event) => (address = event.EventTarget.value)} />
+      on:input={(event) => (address = event.target.value)} />
 
     <TextInput
       id="imageUrl"
       label="Image Url"
       value={imageUrl}
-      on:input={(event) => (imageUrl = event.EventTarget.value)} />
+      on:input={(event) => (imageUrl = event.target.value)} />
 
-    <div class="form-control">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" bind:value={email} />
-    </div>
+    <TextInput
+      id="email"
+      label="E-mail"
+      value={email}
+      on:input={(event) => (email = event.target.value)} />
+
     <div class="form-control">
       <label for="description">Description</label>
       <textarea rows="3" id="description" bind:value={description} />
