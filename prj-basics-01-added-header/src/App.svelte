@@ -2,6 +2,7 @@
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import Header from "./UI/Header.svelte";
   import TextInput from "./UI/TextInput.svelte";
+  import Button from "./UI/Button.svelte";
 
   let title = "";
   let subtitle = "";
