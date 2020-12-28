@@ -47,6 +47,8 @@
         <slot />
     </div>
     <footer>
-        <slot name="footer"><button>Close</button></slot>
+        <slot name="footer">
+            <button on:click={() => dispatch('close')}>Close</button>
+        </slot>
     </footer>
 </div>
