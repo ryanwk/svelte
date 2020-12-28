@@ -28,8 +28,7 @@
 <!-- emitting custom events  -->
 {#each products as product}
 	<Product
-		title={product.title}
-		price={product.price}
+		{...product}
 		on:add-to-cart={addToCart}
 		on:delete={deleteProduct} />
 {/each}
