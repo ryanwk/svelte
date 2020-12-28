@@ -43,4 +43,7 @@
     <div class="content">
         <slot />
     </div>
+    <footer>
+        <slot name="footer"><button>Close</button></slot>
+    </footer>
 </div>
