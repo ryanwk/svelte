@@ -46,6 +46,9 @@
     <div class="content">
         <slot />
     </div>
+    <div class="disclaimer">
+        <p>Before you close, you need to agree to our terms</p>
+    </div>
     <footer>
         <slot name="footer">
             <button on:click={() => dispatch('close')}>Close</button>
