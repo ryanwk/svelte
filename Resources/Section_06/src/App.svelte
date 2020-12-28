@@ -21,11 +21,11 @@
 <!--<style>
 </style>-->
 
-<!-- event forwarding and emitting custom events  -->
+<!-- event forwarding -->
 <!-- throw an alert when user hits Delete or Add to Cart using forwarding -->
 <!-- <Product productTitle="A Book" on:click={() => alert('Clicked')} /> -->
 
-<!-- emitting custom events  -->
+<!-- emitting custom events with spread operator -->
 {#each products as product}
 	<Product
 		{...product}

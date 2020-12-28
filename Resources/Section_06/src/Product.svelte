@@ -4,6 +4,7 @@
 
     export let title;
     export let price;
+    export let bestseller = false;
 
     const dispatch = createEventDispatcher();
 
@@ -20,6 +21,10 @@
 <article>
     <h1>{title}</h1>
     <h2>${price}</h2>
+
+    {#if bestseller}
+        <h3>Best Seller</h3>
+    {/if}
     <!-- events don't propogate across event boundaries so you need to register the event listener on each button without an assignment-->
     <button on:click={addToCart}>Add to Cart</button>
     <button
