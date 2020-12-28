@@ -1,5 +1,6 @@
 <script>
 	import Product from "./Product.svelte";
+	import Modal from "./Modal.svelte";
 
 	let products = [
 		{
