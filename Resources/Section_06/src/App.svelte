@@ -1,11 +1,8 @@
 <script>
-	export let name;
+	import Product from "./Product.svelte";
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<!--<style>
+</style>-->
 
-<h1>Hello {name}!</h1>
+<Product productTitle="A Book" />
