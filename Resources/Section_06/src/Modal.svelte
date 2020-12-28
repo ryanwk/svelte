@@ -31,5 +31,12 @@
 
 <div class="backdrop" />
 <div class="modal">
-    <slot />
+    <header>
+        <div>
+            <slot name="header" />
+        </div>
+    </header>
+    <div class="content">
+        <slot />
+    </div>
 </div>
