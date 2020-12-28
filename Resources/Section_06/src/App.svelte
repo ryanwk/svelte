@@ -10,6 +10,8 @@
 		},
 	];
 
+	let showModal = false;
+
 	function addToCart(event) {
 		console.log(event.detail);
 	}
@@ -34,8 +36,12 @@
 		on:delete={deleteProduct} />
 {/each}
 
-<Modal>
-	<h1 slot="header">Hello!</h1>
-	<p>This works!</p>
-	<button slot="footer">Confirm</button>
-</Modal>
+<button on:click={() => (showModal = true)}>Show Modal</button>
+
+{#if showModal}
+	<Modal>
+		<h1 slot="header">Hello!</h1>
+		<p>This works!</p>
+		<button slot="footer">Confirm</button>
+	</Modal>
+{/if}
