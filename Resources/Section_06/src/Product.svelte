@@ -2,7 +2,8 @@
     // allows you to create event dispatching statement
     import { createEventDispatcher } from "svelte";
 
-    export let productTitle;
+    export let title;
+    export let price;
 
     const dispatch = createEventDispatcher();
 
@@ -17,7 +18,8 @@
 </style>
 
 <article>
-    <h1>{productTitle}</h1>
+    <h1>{title}</h1>
+    <h2>${price}</h2>
     <!-- events don't propogate across event boundaries so you need to register the event listener on each button without an assignment-->
     <button on:click={addToCart}>Add to Cart</button>
     <button

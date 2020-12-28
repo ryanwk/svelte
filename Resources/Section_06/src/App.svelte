@@ -1,6 +1,14 @@
 <script>
 	import Product from "./Product.svelte";
 
+	let products = [
+		{
+			id: "p1",
+			title: "A book",
+			price: 9.99,
+		},
+	];
+
 	function addToCart(event) {
 		console.log(event.detail);
 	}
@@ -18,7 +26,10 @@
 <!-- <Product productTitle="A Book" on:click={() => alert('Clicked')} /> -->
 
 <!-- emitting custom events  -->
-<Product
-	productTitle="A Book"
-	on:add-to-cart={addToCart}
-	on:delete={deleteProduct} />
+{#each products as product}
+	<Product
+		title={product.title}
+		price={product.price}
+		on:add-to-cart={addToCart}
+		on:delete={deleteProduct} />
+{/each}
