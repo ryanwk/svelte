@@ -25,6 +25,10 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
         overflow: scroll;
     }
+
+    header {
+        border-bottom: 1px solid lightgray;
+    }
 </style>
 
 <!-- slots & modal section -->
