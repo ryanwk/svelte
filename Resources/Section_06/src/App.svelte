@@ -39,9 +39,13 @@
 <button on:click={() => (showModal = true)}>Show Modal</button>
 
 {#if showModal}
-	<Modal>
+	<Modal
+		on:cancel={() => (showModal = false)}
+		on:close={() => (showModal = false)}>
 		<h1 slot="header">Hello!</h1>
 		<p>This works!</p>
-		<button slot="footer">Confirm</button>
+		<button
+			slot="footer"
+			on:click={() => (showModal = false)}>Confirm</button>
 	</Modal>
 {/if}
