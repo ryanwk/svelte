@@ -1,4 +1,7 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 </script>
 
 <style>
@@ -33,7 +36,7 @@
 
 <!-- slots & modal section -->
 
-<div class="backdrop" />
+<div class="backdrop" on:click={() => dispatch('cancel')} />
 <div class="modal">
     <header>
         <div>
