@@ -33,3 +33,7 @@
 		on:add-to-cart={addToCart}
 		on:delete={deleteProduct} />
 {/each}
+
+<Modal>
+	<h1>Hello!</h1>
+</Modal>

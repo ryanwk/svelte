@@ -30,4 +30,6 @@
 <!-- slots & modal section -->
 
 <div class="backdrop" />
-<div class="modal" />
+<div class="modal">
+    <slot />
+</div>
