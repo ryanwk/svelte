@@ -7,6 +7,6 @@
 
 <article>
     <h1>{productTitle}</h1>
-    <button>Add to Cart</button>
+    <button on:click>Add to Cart</button>
     <button>Delete</button>
 </article>

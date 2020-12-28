@@ -4,5 +4,5 @@
 
 <!--<style>
 </style>-->
-
-<Product productTitle="A Book" />
+<!-- throw an alert when user hits Delete or Add to Cart using forwarding -->
+<Product productTitle="A Book" on:click={() => alert('Clicked')} />
