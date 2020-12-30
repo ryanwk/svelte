@@ -22,6 +22,22 @@
 	function deleteProduct(event) {
 		console.log(event.detail);
 	}
+
+	function transform(event) {
+		if (event.which != 9) {
+			return;
+		}
+		event.preventDefault();
+
+		const selectionStart = event.target.selectionStart;
+		const selectionEnd = event.target.selectionEnd;
+		const value = event.target.value;
+
+		text =
+			value.slice(0, selectionStart) +
+			value.slice(selectionStart, selectionEnd).toUpperCase() +
+			value.slice(selectionEnd);
+	}
 </script>
 
 <!--<style>
@@ -55,4 +71,4 @@
 	</Modal>
 {/if}
 
-<textarea rows="5" value={text} />
+<textarea rows="5" value={text} on:keydown={transform} />
