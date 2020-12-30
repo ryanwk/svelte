@@ -1,4 +1,5 @@
 <script>
+	import tick from "svelte";
 	import Product from "./Product.svelte";
 	import Modal from "./Modal.svelte";
 
