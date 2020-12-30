@@ -11,6 +11,8 @@
 
     let agreed = false;
 
+    let autoscroll = false;
+
     onMount(() => {
         console.log("onMount triggered");
     });
@@ -21,10 +23,15 @@
 
     beforeUpdate(() => {
         console.log("beforeUpdate triggered");
+        autoscroll = agreed;
     });
 
     afterUpdate(() => {
         console.log("afterUpdate triggered");
+        if (autoscroll) {
+            const modal = document.querySelector(".modal");
+            modal.scrollTo(0, modal.scrollHeight);
+        }
     });
 
     console.log("script executed");
