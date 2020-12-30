@@ -1,9 +1,19 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount, onDestroy } from "svelte";
 
     const dispatch = createEventDispatcher();
 
     let agreed = false;
+
+    onMount(() => {
+        console.log("onMount triggered");
+    });
+
+    onDestroy(() => {
+        console.log("onDestroy triggered");
+    });
+
+    console.log("script executed");
 </script>
 
 <style>
