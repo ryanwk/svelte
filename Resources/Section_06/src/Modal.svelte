@@ -19,6 +19,14 @@
         console.log("onDestroy triggered");
     });
 
+    beforeUpdate(() => {
+        console.log("beforeUpdate triggered");
+    });
+
+    afterUpdate(() => {
+        console.log("afterUpdate triggered");
+    });
+
     console.log("script executed");
 </script>
 
