@@ -53,7 +53,7 @@
         <button on:click={() => (agreed = true)}>Agree</button>
     </div>
     <footer>
-        <slot name="footer">
+        <slot name="footer" didAgree={agreed}>
             <button
                 on:click={() => dispatch('close')}
                 disabled={!agreed}>Close</button>
