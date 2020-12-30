@@ -1,7 +1,9 @@
 <script>
-	import tick from "svelte";
+	import { tick } from "svelte";
 	import Product from "./Product.svelte";
 	import Modal from "./Modal.svelte";
+
+	let text = "this is example text";
 
 	let products = [
 		{
@@ -52,3 +54,5 @@
 			disabled={!closable}>Confirm</button>
 	</Modal>
 {/if}
+
+<textarea rows="5" value={text} />
