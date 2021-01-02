@@ -75,12 +75,16 @@
     max-width: 90%;
     margin: auto;
   }
+  .meetup-controls {
+    margin: 1rem;
+  }
 </style>
 
 <Header />
 
 <main>
-  <form on:submit|preventDefault={addMeetup}>
+  <div class="meetup-controls">
+    <!-- <form on:submit|preventDefault={addMeetup}>
     <TextInput
       id="title"
       label="Title"
@@ -123,10 +127,12 @@
       value={description}
       on:input={(event) => (description = event.target.value)} />
     <Button type="submit" caption="Save" />
-  </form>
-  <Button caption="New Meetup" on:click={() => (editMode = 'add')} />
-  {#if editMode === 'add'}
-    <EditMeetup />
-  {/if}
-  <MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
+  </form> -->
+
+    <Button caption="New Meetup" on:click={() => (editMode = 'add')} />
+    {#if editMode === 'add'}
+      <EditMeetup on:save={addMeetup} />
+    {/if}
+    <MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
+  </div>
 </main>
