@@ -77,11 +77,11 @@
   </div>
   <footer>
     <Button href="mailto:{email}" mode="outline" caption="Contact" />
-    <Button type="button" mode="outline" caption="Show Details" />
     <Button
-      type="button"
       mode="outline"
-      caption={isFav ? 'unfavorite' : 'Favorite'}
-      on:click={() => dispatch('toggleFavorite', id)} />
+      type="button"
+      caption={isFav ? 'Unfavorite' : 'Favorite'}
+      on:click={() => dispatch('togglefavorite', id)} />
+    <Button type="button" mode="outline" caption="Show Details" />
   </footer>
 </article>

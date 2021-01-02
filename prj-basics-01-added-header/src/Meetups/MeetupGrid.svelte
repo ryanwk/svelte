@@ -11,6 +11,7 @@
     grid-template-columns: 1fr;
     grid-gap: 1rem;
   }
+
   @media (min-width: 768px) {
     section {
       grid-template-columns: repeat(2, 1fr);
@@ -20,14 +21,15 @@
 
 <section id="meetups">
   {#each meetups as meetup}
-    <MeetupItem
-      id={meetups.id}
+    <MeetupItem 
+      id={meetup.id}
       title={meetup.title}
       subtitle={meetup.subtitle}
       description={meetup.description}
       imageUrl={meetup.imageUrl}
       email={meetup.contactEmail}
+      address={meetup.address}
       isFav={meetup.isFavorite}
-      on:toggleFavorite />
+      on:togglefavorite />
   {/each}
 </section>

@@ -40,13 +40,11 @@
   }
 </style>
 
-<!-- custom TextInput component html -->
-
 <div class="form-control">
   <label for={id}>{label}</label>
   {#if controlType === 'textarea'}
-    <textarea {rows} {id} vaue={value} on:input />
-  {:else}<input {type} {id} vaue={value} on:input />{/if}
+    <textarea {rows} {id} {value} on:input />
+  {:else}
+    <input type="{type}" {id} {value} on:input />
+  {/if}
 </div>
-
-<!-- end custom TextInput component html -->
