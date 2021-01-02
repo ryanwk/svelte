@@ -5,13 +5,6 @@
   import Button from "./UI/Button.svelte";
   import EditMeetup from "./Meetups/EditMeetup.svelte";
 
-  let title = "";
-  let subtitle = "";
-  let address = "";
-  let email = "";
-  let description = "";
-  let imageUrl = "";
-
   let meetups = [
     {
       id: "m1",
@@ -39,15 +32,15 @@
 
   let editMode = null;
 
-  function addMeetup() {
-    let newMeetup = {
+  function addMeetup(event) {
+    const newMeetup = {
       id: Math.random().toString(),
-      title: title,
-      subtitle: subtitle,
-      description: description,
-      imageUrl: imageUrl,
-      contactEmail: email,
-      address: address,
+      title: event.title,
+      subtitle: event.subtitle,
+      description: event.description,
+      imageUrl: event.imageUrl,
+      contactEmail: event.email,
+      address: event.address,
     };
     // create new array for meetups, then use ... syntax to add new meetups to the array
     meetups = [newMeetup, ...meetups];
@@ -84,51 +77,6 @@
 
 <main>
   <div class="meetup-controls">
-    <!-- <form on:submit|preventDefault={addMeetup}>
-    <TextInput
-      id="title"
-      label="Title"
-      type="text"
-      value={title}
-      on:input={(event) => (title = event.target.value)} />
-
-    <TextInput
-      id="subtitle"
-      label="Subtitle"
-      type="text"
-      value={subtitle}
-      on:input={(event) => (subtitle = event.target.value)} />
-
-    <TextInput
-      id="address"
-      label="Address"
-      type="text"
-      value={address}
-      on:input={(event) => (address = event.target.value)} />
-
-    <TextInput
-      id="imageUrl"
-      label="Image Url"
-      type="image"
-      value={imageUrl}
-      on:input={(event) => (imageUrl = event.target.value)} />
-
-    <TextInput
-      id="email"
-      label="E-mail"
-      type="email"
-      value={email}
-      on:input={(event) => (email = event.target.value)} />
-
-    <TextInput
-      id="description"
-      label="Description"
-      controlType="textarea"
-      value={description}
-      on:input={(event) => (description = event.target.value)} />
-    <Button type="submit" caption="Save" />
-  </form> -->
-
     <Button caption="New Meetup" on:click={() => (editMode = 'add')} />
     {#if editMode === 'add'}
       <EditMeetup on:save={addMeetup} />

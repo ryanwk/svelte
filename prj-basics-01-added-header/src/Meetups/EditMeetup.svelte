@@ -78,4 +78,3 @@
         on:input={(event) => (description = event.target.value)} />
     <Button type="submit" caption="Save" />
 </form>
-<!-- <MeetupGrid {meetups} on:togglefavorite={toggleFavorite} /> -->
