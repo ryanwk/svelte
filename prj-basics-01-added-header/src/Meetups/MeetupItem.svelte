@@ -8,6 +8,7 @@
   export let description;
   export let imageUrl;
   export let email;
+  export let isFav;
 
   const dispatch = createEventDispatcher();
 </script>
@@ -80,7 +81,7 @@
     <Button
       type="button"
       mode="outline"
-      caption="Favorite"
+      caption={isFav ? 'unfavorite' : 'Favorite'}
       on:click={() => dispatch('toggleFavorite', id)} />
   </footer>
 </article>

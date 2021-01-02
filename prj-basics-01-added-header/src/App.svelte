@@ -54,9 +54,9 @@
     const id = event.detail;
     const updatedMeetup = {
       ...meetups.find((m) => m.id === id),
-    };
+    }; //executes on meetup id then returns true if found and returns a single copy of that meetup obj
     updatedMeetup.isFavorite = !updatedMeetup.isFavorite; // toggles true or false
-    const meetupIndex = meetups.findIndex((m) => m.id === id); //
+    const meetupIndex = meetups.findIndex((m) => m.id === id); // stores found meetup in meetups
     const updatedMeetups = [...meetups]; // copy entire meetups array
     updatedMeetups[meetupIndex] = updatedMeetup; // update copied array
     meetups = updatedMeetups;
