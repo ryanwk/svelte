@@ -13,7 +13,13 @@
     const dispatch = createEventDispatcher();
 
     function submitForm() {
-        dispatch("save", {});
+        dispatch("save", {
+            title: title,
+            subtitle: subtitle,
+            address: address,
+            description: description,
+            imageUrl: imageUrl,
+        });
     }
 </script>
 
