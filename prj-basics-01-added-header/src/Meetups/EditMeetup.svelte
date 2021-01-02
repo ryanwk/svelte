@@ -9,9 +9,15 @@
     let email = "";
     let description = "";
     let imageUrl = "";
+
+    const dispatch = createEventDispatcher();
+
+    function submitForm() {
+        dispatch("save", {});
+    }
 </script>
 
-<form on:submit|preventDefault={event}>
+<form on:submit|preventDefault={submitForm}>
     <TextInput
         id="title"
         label="Title"
