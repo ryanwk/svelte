@@ -3,6 +3,7 @@
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import TextInput from "./UI/TextInput.svelte";
   import Button from "./UI/Button.svelte";
+  import EditMeetup from "./Meetups/EditMeetup.svelte";
 
   let title = "";
   let subtitle = "";
@@ -35,6 +36,8 @@
       isFavorite: false,
     },
   ];
+
+  let editMode = null;
 
   function addMeetup() {
     let newMeetup = {
@@ -121,5 +124,9 @@
       on:input={(event) => (description = event.target.value)} />
     <Button type="submit" caption="Save" />
   </form>
+  <Button caption="New Meetup" on:click={() => (editMode = 'add')} />
+  {#if editMode === 'add'}
+    <EditMeetup />
+  {/if}
   <MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
 </main>
