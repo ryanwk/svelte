@@ -21,6 +21,7 @@
         "https://cdn.stocksnap.io/img-thumbs/960w/programming-code_1STVFMTBJY.jpg",
       address: "27th Nerd Road, 4]33245 New York",
       contactEmail: "code@test.com",
+      isFavorite: false,
     },
     {
       id: "m2",
@@ -31,6 +32,7 @@
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbkxJUFalQvzsBx7fEDhakXolossPx-o9_Q&usqp=CAU",
       address: "27th swim lane, 433245 New York",
       contactEmail: "swim@test.com",
+      isFavorite: false,
     },
   ];
 
@@ -46,6 +48,18 @@
     };
     // create new array for meetups, then use ... syntax to add new meetups to the array
     meetups = [newMeetup, ...meetups];
+  }
+
+  function toggleFavorite(event) {
+    const id = event.detail;
+    const updatedMeetup = {
+      ...meetups.find((m) => m.id === id),
+    };
+    updatedMeetup.isFavorite = !updatedMeetup.isFavorite; // toggles true or false
+    const meetupIndex = meetups.findIndex((m) => m.id === id); //
+    const updatedMeetups = [...meetups]; // copy entire meetups array
+    updatedMeetups[meetupIndex] = updatedMeetup; // update copied array
+    meetups = updatedMeetups;
   }
 </script>
 
@@ -107,5 +121,5 @@
       on:input={(event) => (description = event.target.value)} />
     <Button type="submit" caption="Save" />
   </form>
-  <MeetupGrid {meetups} />
+  <MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
 </main>

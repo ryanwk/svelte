@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Button from "../UI/Button.svelte";
+
+  export let id;
   export let title;
   export let subtitle;
   export let description;
@@ -79,6 +81,6 @@
       type="button"
       mode="outline"
       caption="Favorite"
-      on:click={() => dispatch('toggle-favorite')} />
+      on:click={() => dispatch('toggleFavorite', id)} />
   </footer>
 </article>
