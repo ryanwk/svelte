@@ -7,6 +7,8 @@
         background: #cf0056;
         color: white;
         padding: 0 0.05rem;
+        front-family: "Lato", sans-serif;
+        font-size: 0.8rem;
     }
 </style>
 
