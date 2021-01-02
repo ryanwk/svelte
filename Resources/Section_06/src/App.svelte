@@ -1,5 +1,5 @@
 <script>
-	import { tick } from "svelte";
+	import { tick, afterUpdate } from "svelte";
 	import Product from "./Product.svelte";
 	import Modal from "./Modal.svelte";
 
@@ -37,6 +37,11 @@
 			value.slice(0, selectionStart) +
 			value.slice(selectionStart, selectionEnd).toUpperCase() +
 			value.slice(selectionEnd);
+
+		tick().then(() => {
+			event.target.selectionStart = selectionStart;
+			event.target.selectionEnd = selectionEnd;
+		});
 	}
 </script>
 
