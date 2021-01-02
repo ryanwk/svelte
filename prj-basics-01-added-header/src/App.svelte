@@ -35,12 +35,12 @@
   function addMeetup(event) {
     const newMeetup = {
       id: Math.random().toString(),
-      title: event.title,
-      subtitle: event.subtitle,
-      description: event.description,
-      imageUrl: event.imageUrl,
-      contactEmail: event.email,
-      address: event.address,
+      title: event.detail.title,
+      subtitle: event.detail.subtitle,
+      description: event.detail.description,
+      imageUrl: event.detail.imageUrl,
+      contactEmail: event.detail.email,
+      address: event.detail.address,
     };
     // create new array for meetups, then use ... syntax to add new meetups to the array
     meetups = [newMeetup, ...meetups];
