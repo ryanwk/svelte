@@ -30,7 +30,7 @@
     }
 </style>
 
-<Modal title="Edit Meetup Data">
+<Modal title="Edit Meetup Data" on:cancel>
     <form on:submit|preventDefault={submitForm}>
         <TextInput
             id="title"
