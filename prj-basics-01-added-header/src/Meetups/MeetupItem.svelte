@@ -6,8 +6,9 @@
   export let id;
   export let title;
   export let subtitle;
-  export let description;
   export let imageUrl;
+  export let description;
+  export let address;
   export let email;
   export let isFav;
 
@@ -66,29 +67,38 @@
   div {
     text-align: right;
   }
+
+  .content {
+    height: 4rem;
+  }
 </style>
 
 <article>
-  <header />
-  <h1>
-    {title}
-    {#if isFav}
-      <Badge>FAVORITE</Badge>
-    {/if}
-  </h1>
-  <h2>{subtitle}</h2>
-  <div class="Image"><img src={imageUrl} alt={title} /></div>
+  <header>
+    <h1>
+      {title}
+      {#if isFav}
+        <Badge>FAVORITE</Badge>
+      {/if}
+    </h1>
+    <h2>{subtitle}</h2>
+    <p>{address}</p>
+  </header>
+  <div class="image">
+    <img src={imageUrl} alt={title} />
+  </div>
   <div class="content">
     <p>{description}</p>
   </div>
   <footer>
-    <Button href="mailto:{email}" mode="outline" caption="Contact" />
+    <Button href="mailto:{email}">Contact</Button>
     <Button
       mode="outline"
       color={isFav ? null : 'success'}
       type="button"
-      caption={isFav ? 'Unfavorite' : 'Favorite'}
-      on:click={() => dispatch('togglefavorite', id)} />
-    <Button type="button" mode="outline" caption="Show Details" />
+      on:click={() => dispatch('togglefavorite', id)}>
+      {isFav ? 'Unfavorite' : 'Favorite'}
+    </Button>
+    <Button type="button">Show Details</Button>
   </footer>
 </article>
