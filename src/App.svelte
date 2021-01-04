@@ -53,5 +53,5 @@
 </style>
 
 <header>
-  <h1>Meet Ups</h1>
+  <h1>Meet Upz</h1>
 </header>
