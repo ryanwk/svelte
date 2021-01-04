@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import TextInput from "../UI/TextInput.svelte";
     import Button from "../UI/Button.svelte";
+    // import Modal from "../UI/Modal.svelte";
 
     let title = "";
     let subtitle = "";
