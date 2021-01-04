@@ -63,11 +63,11 @@
   main {
     margin-top: 5rem;
   }
-  form {
+  /* form {
     width: 30rem;
     max-width: 90%;
     margin: auto;
-  }
+  } */
   .meetup-controls {
     margin: 1rem;
   }

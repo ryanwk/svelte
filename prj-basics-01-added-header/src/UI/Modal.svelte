@@ -54,7 +54,7 @@
     }
 </style>
 
-<div class="modal-backdrop">..</div>
+<div class="modal-backdrop" on:click />
 
 <div class="modal">
     <h1>{title}</h1>
@@ -64,7 +64,7 @@
 
     <footer>
         <slot name="footer">
-            <Button>Close</Button>
+            <Button on:click>Close</Button>
         </slot>
     </footer>
 </div>
