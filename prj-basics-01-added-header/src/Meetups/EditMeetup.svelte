@@ -25,13 +25,8 @@
 </script>
 
 <style>
-    main {
-        margin-top: 5rem;
-    }
     form {
-        width: 30rem;
-        max-width: 90%;
-        margin: auto;
+        width: 100%;
     }
 </style>
 
