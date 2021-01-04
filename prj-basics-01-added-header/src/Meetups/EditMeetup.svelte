@@ -78,6 +78,5 @@
             controlType="textarea"
             value={description}
             on:input={(event) => (description = event.target.value)} />
-        <Button type="submit" caption="Save" />
     </form>
 </Modal>
