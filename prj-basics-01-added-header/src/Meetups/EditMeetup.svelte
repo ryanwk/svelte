@@ -3,13 +3,18 @@
   import TextInput from "../UI/TextInput.svelte";
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
+  import { isEmpty } from "../helpers/validation.js";
 
   let title = "";
+  let titleValid = false;
   let subtitle = "";
   let address = "";
   let email = "";
   let description = "";
   let imageUrl = "";
+
+  // this checks if a title meets the validation criteria,  if it does then the isValid is set to true or vice versa
+  $: titleValid = !isEmpty(title);
 
   const dispatch = createEventDispatcher();
 
@@ -40,28 +45,28 @@
     <TextInput
       id="title"
       label="Title"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid title."
       value={title}
       on:input={(event) => (title = event.target.value)} />
     <TextInput
       id="subtitle"
       label="Subtitle"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid subtitle."
       value={subtitle}
       on:input={(event) => (subtitle = event.target.value)} />
     <TextInput
       id="address"
       label="Address"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid Address."
       value={address}
       on:input={(event) => (address = event.target.value)} />
     <TextInput
       id="imageUrl"
       label="Image URL"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid image URL."
       value={imageUrl}
       on:input={(event) => (imageUrl = event.target.value)} />
@@ -69,7 +74,7 @@
       id="email"
       label="E-Mail"
       type="email"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid E-mail address."
       value={email}
       on:input={(event) => (email = event.target.value)} />
@@ -77,7 +82,7 @@
       id="description"
       label="Description"
       controlType="textarea"
-      valid={true}
+      valid={titleValid}
       validityMessage="Please enter a valid description."
       value={description}
       on:input={(event) => (description = event.target.value)} />
