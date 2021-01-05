@@ -1,5 +1,4 @@
 <script>
-    import { type } from "os";
     import CustomInput from "./CustomInput.svelte";
     import Toggle from "./Toggle.svelte";
 
