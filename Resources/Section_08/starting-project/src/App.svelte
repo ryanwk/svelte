@@ -1,4 +1,5 @@
 <script>
+    import { type } from "os";
     import CustomInput from "./CustomInput.svelte";
     import Toggle from "./Toggle.svelte";
 
@@ -8,6 +9,11 @@
     let agreed;
     let favColor = "red";
     let singleFavColor = "green";
+    let userNameInput;
+    let someDiv;
+    let customInput;
+    let enteredEmail = "";
+    let formIsValid = false;
 
     $: console.log(val);
     $: console.log(selectedOption);
@@ -15,15 +21,24 @@
     $: console.log(agreed);
     $: console.log(favColor);
     $: console.log(singleFavColor);
+    $: console.log(customInput);
+
+    $: if (enteredEmail.includes("@")) {
+        formIsValid = true;
+    } else {
+        formIsValid = false;
+    }
 
     function setValue(event) {
         val = event.target.value;
     }
+
+    function saveData() {
+        console.log(userNameInput.value);
+    }
 </script>
 
-<!-- <input type="text" value={val} on:input={setValue}> -->
-<!-- <input type="text" bind:value={val} /> -->
-<CustomInput bind:val />
+<CustomInput bind:val bind:this={customInput} />
 
 <Toggle bind:chosenOption={selectedOption} />
 
@@ -56,3 +71,15 @@
     <option value="red">red</option>
     <option value="blue">blue</option>
 </select>
+
+<hr />
+<h1>bind:this example</h1>
+<input type="text" bind:this={userNameInput} />
+<button on:click={saveData}>Save</button>
+
+<hr />
+<h1>custom form field validation</h1>
+<form on:submit|preventDefault>
+    <input type="email" bind:value={enteredEmail} />
+    <button type="submit" disabled={!formIsValid}>Save</button>
+</form>
