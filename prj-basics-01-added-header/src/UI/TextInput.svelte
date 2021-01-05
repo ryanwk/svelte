@@ -55,8 +55,8 @@
 <div class="form-control">
   <label for={id}>{label}</label>
   {#if controlType === 'textarea'}
-    <textarea {rows} {id} {value} on:input />
-  {:else}<input {type} {id} {value} on:input />{/if}
+    <textarea class:invalid={!valid} {rows} {id} {value} on:input />
+  {:else}<input class:invalid={!valid} {type} {id} {value} on:input />{/if}
   {#if validityMessage && !valid}
     <p class="error-message">{validityMessage}</p>
   {/if}
